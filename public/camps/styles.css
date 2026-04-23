@@ -1,0 +1,429 @@
+:root {
+  --bg: #08120d;
+  --bg-alt: #11261a;
+  --panel: rgba(8, 19, 14, 0.84);
+  --panel-strong: rgba(14, 30, 22, 0.94);
+  --line: rgba(223, 233, 212, 0.14);
+  --line-strong: rgba(223, 233, 212, 0.24);
+  --text: #f3f5ee;
+  --muted: #b9c6b0;
+  --accent: #d2b15a;
+  --accent-strong: #efcb70;
+  --accent-soft: rgba(210, 177, 90, 0.18);
+  --field: rgba(90, 144, 104, 0.12);
+  --shadow: 0 22px 48px rgba(0, 0, 0, 0.28);
+  --radius-xl: 28px;
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(210, 177, 90, 0.14), transparent 32%),
+    radial-gradient(circle at top right, rgba(81, 124, 91, 0.18), transparent 28%),
+    linear-gradient(180deg, #0c1b13 0%, #08120d 46%, #050b08 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0, transparent 9%, rgba(255, 255, 255, 0.025) 9%, rgba(255, 255, 255, 0.025) 9.35%, transparent 9.35%, transparent 19%, rgba(255, 255, 255, 0.025) 19%, rgba(255, 255, 255, 0.025) 19.35%, transparent 19.35%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 18%);
+  opacity: 0.55;
+}
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.page-shell {
+  width: min(1480px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 36px 0 60px;
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(320px, 0.9fr);
+  gap: 24px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(135deg, rgba(210, 177, 90, 0.08), transparent 34%),
+    linear-gradient(160deg, rgba(84, 146, 105, 0.16), transparent 66%),
+    var(--panel);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -120px -140px auto;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(210, 177, 90, 0.22), transparent 68%);
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--accent-strong);
+  letter-spacing: 0.24em;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.hero h1,
+.month-heading,
+.section-title {
+  margin: 0;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 11ch;
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  line-height: 0.94;
+}
+
+.hero-text,
+.selector-note,
+.section-note,
+.issue-meta,
+.empty-month,
+.loading-text,
+.error-text {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.hero-text {
+  max-width: 62ch;
+  margin: 18px 0 0;
+  font-size: 1.02rem;
+}
+
+.selector-card,
+.month-card,
+.issues-card,
+.metric-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--panel-strong);
+}
+
+.selector-card {
+  position: relative;
+  z-index: 1;
+  align-self: start;
+  padding: 22px;
+}
+
+.selector-label,
+.metric-label,
+.month-kicker,
+.issue-label,
+.day-name,
+.day-number {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.selector-label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 0.75rem;
+  color: var(--accent-strong);
+}
+
+.select-wrap {
+  position: relative;
+}
+
+.select-wrap select {
+  width: 100%;
+  padding: 16px 56px 16px 18px;
+  border: 1px solid rgba(210, 177, 90, 0.34);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+    rgba(8, 18, 13, 0.92);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+  appearance: none;
+  cursor: pointer;
+}
+
+.select-wrap select:focus {
+  outline: 2px solid rgba(210, 177, 90, 0.42);
+  outline-offset: 3px;
+}
+
+.select-arrow {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid var(--accent-strong);
+  border-bottom: 2px solid var(--accent-strong);
+  transform: translateY(-68%) rotate(45deg);
+  pointer-events: none;
+}
+
+.selector-note {
+  margin: 14px 0 0;
+  font-size: 0.95rem;
+}
+
+.overview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.metric-card {
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+}
+
+.metric-label {
+  margin: 0 0 10px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.metric-value {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.month-card {
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.month-top {
+  padding: 18px 20px 0;
+}
+
+.month-kicker {
+  margin: 0 0 8px;
+  color: var(--accent-strong);
+  font-size: 0.72rem;
+}
+
+.month-heading {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.section-note {
+  margin: 8px 0 0;
+  font-size: 0.92rem;
+}
+
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid var(--line);
+}
+
+.day-name {
+  padding: 12px 10px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.day-cell {
+  min-height: 148px;
+  padding: 10px;
+  background:
+    linear-gradient(180deg, rgba(86, 135, 96, 0.06), transparent 42%),
+    rgba(255, 255, 255, 0.02);
+}
+
+.day-cell.is-empty {
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.day-cell.is-outside {
+  background: rgba(255, 255, 255, 0.008);
+}
+
+.day-number {
+  margin: 0 0 10px;
+  font-size: 0.7rem;
+  color: var(--accent-strong);
+}
+
+.day-events {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.day-link,
+.issue-link {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.day-link {
+  display: inline-block;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(210, 177, 90, 0.18), rgba(210, 177, 90, 0.06));
+  border: 1px solid rgba(210, 177, 90, 0.18);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.day-link:hover,
+.issue-link:hover {
+  color: var(--accent-strong);
+}
+
+.empty-month,
+.loading-text,
+.error-text {
+  padding: 0 20px 20px;
+}
+
+.issues-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.issues-card {
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.section-title {
+  font-size: 1.6rem;
+}
+
+.issue-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.issue-item {
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+}
+
+.issue-label {
+  margin: 0 0 6px;
+  color: var(--accent-strong);
+  font-size: 0.72rem;
+}
+
+.issue-school {
+  margin: 0;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.issue-meta {
+  margin: 4px 0 0;
+  font-size: 0.92rem;
+}
+
+.loading-text,
+.error-text {
+  margin-top: 26px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.error-text {
+  color: #ffd2c6;
+}
+
+@media (max-width: 1120px) {
+  .hero,
+  .calendar-grid,
+  .issues-panel,
+  .overview {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 780px) {
+  .page-shell {
+    width: min(100% - 20px, 1480px);
+    padding-top: 20px;
+  }
+
+  .hero,
+  .selector-card,
+  .metric-card,
+  .issues-card {
+    border-radius: 20px;
+  }
+
+  .hero {
+    padding: 20px;
+  }
+
+  .day-name {
+    padding-inline: 6px;
+    font-size: 0.62rem;
+  }
+
+  .day-cell {
+    min-height: 112px;
+    padding: 8px 6px;
+  }
+
+  .day-link {
+    padding: 7px 8px;
+    font-size: 0.66rem;
+  }
+}

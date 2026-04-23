@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Football Camp Calendar</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Saved CSV Outputs</p>
+          <h1>Football Camp Calendar</h1>
+          <p class="hero-text">
+            Master and state views for the 2026 football camp schedule, built directly from the final
+            saved files in <code>output/</code>.
+          </p>
+        </div>
+
+        <div class="selector-card">
+          <label class="selector-label" for="state-select">Calendar View</label>
+          <div class="select-wrap">
+            <select id="state-select" aria-label="Select a state calendar view">
+              <option value="">MASTER CALENDAR</option>
+            </select>
+            <span class="select-arrow" aria-hidden="true"></span>
+          </div>
+          <p class="selector-note">Choose a state to swap the full May-August calendar to that school set.</p>
+        </div>
+      </header>
+
+      <main>
+        <section class="overview" id="overview" aria-live="polite"></section>
+        <section class="calendar-grid" id="calendar-grid" aria-live="polite"></section>
+        <section class="issues-panel" id="issues-panel" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <template id="metric-template">
+      <article class="metric-card">
+        <p class="metric-label"></p>
+        <p class="metric-value"></p>
+      </article>
+    </template>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
