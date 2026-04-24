@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/camps",
+      "destination": "https://camps.watchsomefilm.com",
+      "permanent": false
+    },
+    {
+      "source": "/camps/:path*",
+      "destination": "https://camps.watchsomefilm.com/:path*",
+      "permanent": false
+    }
+  ]
+}
